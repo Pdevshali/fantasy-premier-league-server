@@ -1,17 +1,39 @@
 package com.pdev.fpl.users.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "users")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "id")
     private Long  id;
-    private String firstName;
-    private String lastName;
+
+    @Column(name = "username")
+    private String name;
+
+    @Column(name = "email", unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    // role for authorization
+    private String role = "USER";
+
+    @CreatedDate
+    @Column(updatable = false, nullable = false)
+    private LocalDateTime createdAt;
 
 }
