@@ -20,12 +20,9 @@ public class SecurityConfig {
     public DefaultSecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 // for development purposes only; disable CSRF for curl/testing
-                .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth
-                    // permit all endpoints under /api/*
-                    .requestMatchers("/api/**").permitAll()
-                    .anyRequest().authenticated()
-            )
+                .csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(auth -> auth
+                        // permit all endpoints under /api/*
+                        .requestMatchers("/api/**").permitAll().anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());
         return http.build();
     }

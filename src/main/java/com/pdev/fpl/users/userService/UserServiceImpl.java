@@ -34,20 +34,14 @@ public class UserServiceImpl implements UserService {
     }
 
     private UserResponse buildResponse(User user) {
-        return new UserResponse(
-                user.getId(),
-                user.getName(),
-                user.getEmail(),
-                user.getCreatedAt()
-        );
+        return new UserResponse(user.getId(), user.getName(), user.getEmail(), user.getCreatedAt());
     }
 
     @Override
     @Transactional(readOnly = true)
     public UserResponse fetchByEmail(String email) {
         log.info("fetchByEmail method called with email: {}", email);
-        return userRepo.findByEmail(email)
-                .map(this::buildResponse)
+        return userRepo.findByEmail(email).map(this::buildResponse)
                 .orElseThrow(() -> new IllegalArgumentException("User not found with email: " + email));
     }
 }

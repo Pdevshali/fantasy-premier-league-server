@@ -1,6 +1,5 @@
 package com.pdev.fpl.users.UserController;
 
-
 import com.pdev.fpl.users.dto.UserCreationRequest;
 import com.pdev.fpl.users.dto.UserResponse;
 import com.pdev.fpl.users.userService.UserService;

@@ -5,5 +5,6 @@ import com.pdev.fpl.users.dto.UserResponse;
 
 public interface UserService {
     UserResponse createUser(UserCreationRequest request);
+
     UserResponse fetchByEmail(String email);
 }
