@@ -32,8 +32,14 @@ public class User {
     // role for authorization
     private String role = "USER";
 
-    @CreatedDate
-    @Column(updatable = false, nullable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @PrePersist
+    protected void onCreate() {
+        if (this.createdAt == null) {
+            this.createdAt = LocalDateTime.now();
+        }
+    }
 }
+
