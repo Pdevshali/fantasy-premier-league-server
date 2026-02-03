@@ -1,8 +1,8 @@
 package com.pdev.fpl.users.entities;
 
+import com.pdev.fpl.users.enums.Roles;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
@@ -30,7 +30,8 @@ public class User {
     private String password;
 
     // role for authorization
-    private String role = "USER";
+    @Enumerated(EnumType.STRING)
+    private Roles roles = Roles.USER;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
